@@ -5,6 +5,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from './../src/app.module';
+import { DataSource } from 'typeorm';
 
 describe('Authentication (e2e)', () => {
   let app: INestApplication;
@@ -28,6 +29,20 @@ describe('Authentication (e2e)', () => {
     );
 
     await app.init();
+
+    // Clean up test data if exists from previous runs
+    const dataSource = moduleFixture.get(DataSource);
+    try {
+      // First delete posts, then user (due to foreign key constraint)
+      await dataSource.query(
+        "DELETE FROM posts WHERE author_id IN (SELECT id FROM users WHERE email = 'test@example.com')",
+      );
+      await dataSource.query(
+        "DELETE FROM users WHERE email = 'test@example.com'",
+      );
+    } catch (error) {
+      // Ignore errors (data might not exist or database issue)
+    }
   });
 
   afterAll(async () => {

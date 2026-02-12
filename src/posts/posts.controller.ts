@@ -34,14 +34,15 @@ export class PostsController {
         return this.postsService.findAll();
     }
 
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.postsService.findOne(id);
-    }
-
+    // Specific routes must come BEFORE generic :id route
     @Get('author/:authorId')
     findByAuthor(@Param('authorId') authorId: string) {
         return this.postsService.findByAuthor(authorId);
+    }
+
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        return this.postsService.findOne(id);
     }
 
     @UseGuards(JwtAuthGuard)

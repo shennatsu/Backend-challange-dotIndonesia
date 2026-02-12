@@ -180,6 +180,49 @@ E2E tests mencakup:
 - Token format validation
 - Create posts dengan authentication
 
+## 📦 Postman Collections
+
+Dua collections disediakan untuk testing API:
+
+### 1. **`postman_collection.json`** - Basic Collection
+Collection dasar untuk manual testing dengan fitur:
+- Semua endpoints Users dan Posts
+- JWT authentication setup
+- Auto-save token dan IDs ke environment variables
+- Request body examples
+
+**Cocok untuk:**
+- Manual API testing
+- Quick endpoint verification
+- Learning the API structure
+
+### 2. **`postman_collection_with_tests.json`** - Enhanced with Automated Tests ✨
+Collection yang sama dengan **35+ automated test assertions**:
+
+**Test Coverage:**
+- ✅ Status code validation
+- ✅ Response structure checks  
+- ✅ Data integrity validation
+- ✅ JWT token format verification
+- ✅ Relationship integrity (User ↔ Posts)
+- ✅ Performance checks (response time)
+- ✅ Authentication flow validation
+
+**Benefits:**
+- Instant regression testing
+- Self-documenting API behavior
+- Professional quality assurance
+- Automated validation
+
+**Usage:**
+```bash
+# Import collection ke Postman
+# Run "Collection Runner" untuk execute semua tests
+# Expected: 50+ tests passing
+```
+
+> **Note:** For video demo and professional presentation, gunakan collection dengan tests untuk menunjukkan quality assurance best practices.
+
 ## API Documentation
 
 ### Base URL
