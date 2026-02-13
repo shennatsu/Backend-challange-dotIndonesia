@@ -23,7 +23,7 @@ export class Post {
   @Column({ default: false })
   published: boolean;
 
-  @ManyToOne(() => User, (user) => user.posts, { eager: true })
+  @ManyToOne(() => User, (user) => user.posts, { eager: true, onDelete: 'CASCADE' })
   @JoinColumn({ name: 'author_id' })
   author: User;
 
